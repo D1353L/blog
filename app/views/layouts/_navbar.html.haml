@@ -1,0 +1,17 @@
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      = link_to 'Blog', root_path, {class: 'navbar-brand'}
+      %ul.nav.navbar-nav.navbar-right
+        - if user_signed_in?
+          %li
+            %p.navbar-text
+              = "Hi, #{current_user.email}"
+          - if current_user.has_role?(:admin) || current_user.has_role?(:copyriter)
+            %li
+              = link_to 'Admin dashboard', '#'
+          %li
+            = link_to 'Sign out', destroy_user_session_path, method: :delete
+        - else
+          %li
+            = link_to 'Sign in', new_user_session_path

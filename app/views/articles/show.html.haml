@@ -1,4 +1,7 @@
 %p#notice= notice
-= link_to 'Edit', edit_article_path(@article)
-|
+
+.jumbotron
+  %h1= @article.title
+  %p= @article.text
+
 = link_to 'Back', articles_path

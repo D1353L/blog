@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles
   def index
-    @articles = Article.all
+    @articles = Article.page(params[:page])
   end
 
   # GET /articles/1
@@ -53,6 +53,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.fetch(:article, {})
+      params.require(:article).permit(:title, :text).merge({user: current_user})
     end
 end
