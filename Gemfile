@@ -8,10 +8,14 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'devise'
 gem 'cancancan', '~> 2.0'
+gem 'rolify'
 gem 'pg'
 gem 'puma', '~> 3.7'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
+gem 'haml-rails'
+
+gem 'paperclip', '~> 5.0.0'
 
 gem 'bootstrap-kaminari-views'
 gem 'kaminari'
