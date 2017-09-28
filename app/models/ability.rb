@@ -7,7 +7,8 @@ class Ability
     if user
       can :manage, :all if user.has_role? :admin
       if user.has_role? :copyriter
-        can :write, Article, user_id: user.id
+        can :read, Article
+        can [:read, :create, :update], Article, user_id: user.id
         can :index, :dashboard
       end
     end

@@ -7,7 +7,7 @@
           %li
             %p.navbar-text
               = "Hi, #{current_user.email}"
-          - if current_user.has_role?(:admin) || current_user.has_role?(:copyriter)
+          - if can?(:index, :dashboard)
             %li
               = link_to 'Dashboard', dashboard_path
           %li

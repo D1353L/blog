@@ -1,5 +1,4 @@
 class CopyritersController < ApplicationController
-
   # GET /copyriters/new
   def new
     @copyriter = User.new
@@ -24,7 +23,8 @@ class CopyritersController < ApplicationController
   end
 
   private
-    def copyriter_params
-      params.require(:user).permit(:email, :password)
-    end
+
+  def copyriter_params
+    params.require(:user).permit(:email, :password)
+  end
 end

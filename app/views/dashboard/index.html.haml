@@ -3,16 +3,17 @@
   %p= flash[:error] if flash.present?
   %p#notice= notice
 
-  - if current_user.has_role?(:admin)
-    %ul.nav.nav-tabs{:role => "tablist"}
-      %li.active
-        %a{'data-toggle' => 'tab', href: '#articles', role: 'tab'} Articles
-      %li
-        %a{'data-toggle' => 'tab', href: '#copyriters', role: 'tab'} Copyriters
-    .tab-content
-      #articles.tab-pane.active
-        = render 'articles', articles: @articles
-      #copyriters.tab-pane
-        = render 'copyriters', copyriters: @copyriters
-  - elsif current_user.has_role?(:copyriter)
-    = render 'articles', articles: @articles
+  - if can?(:read, Article)
+    - if can?(:read, @copyriters)
+      %ul.nav.nav-tabs{:role => "tablist"}
+        %li.active
+          %a{'data-toggle' => 'tab', href: '#articles', role: 'tab'} Articles
+        %li
+          %a{'data-toggle' => 'tab', href: '#copyriters', role: 'tab'} Copyriters
+      .tab-content
+        #articles.tab-pane.active
+          = render 'articles', articles: @articles
+        #copyriters.tab-pane
+          = render 'copyriters', copyriters: @copyriters
+    - else
+      = render 'articles', articles: @articles
