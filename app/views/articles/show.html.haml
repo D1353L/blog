@@ -3,5 +3,7 @@
 .jumbotron
   %h1= @article.title
   %p= @article.text
+  %br
+  %p= "Viewed #{@article.views_count} times"
 
 = link_to 'Back', return_url

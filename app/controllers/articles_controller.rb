@@ -11,6 +11,7 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1
   def show
+    increment_views_count
   end
 
   # GET /articles/new
@@ -49,6 +50,14 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+    def increment_views_count
+      return if session[:viewed] && session[:viewed].include?(@article.id)
+      @article.increment!(:views_count)
+      session[:viewed] = [] unless session[:viewed]
+      session[:viewed] << @article.id
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
