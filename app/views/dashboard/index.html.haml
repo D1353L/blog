@@ -3,17 +3,16 @@
   %p= flash[:error] if flash.present?
   %p#notice= notice
 
-  - if can?(:read, Article)
-    - if can?(:read, @copyriters)
-      %ul.nav.nav-tabs{:role => "tablist"}
-        %li.active
-          %a{'data-toggle' => 'tab', href: '#articles', role: 'tab'} Articles
-        %li
-          %a{'data-toggle' => 'tab', href: '#copyriters', role: 'tab'} Copyriters
-      .tab-content
-        #articles.tab-pane.active
-          = render 'articles', articles: @articles
-        #copyriters.tab-pane
-          = render 'copyriters', copyriters: @copyriters
-    - else
-      = render 'articles', articles: @articles
+  - if @copyriters.present?
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active
+        %a{'data-toggle' => 'tab', href: '#articles', role: 'tab'} Articles
+      %li
+        %a{'data-toggle' => 'tab', href: '#copyriters', role: 'tab'} Copyriters
+    .tab-content
+      #articles.tab-pane.active
+        = render 'articles', articles: @articles
+      #copyriters.tab-pane
+        = render 'copyriters', copyriters: @copyriters
+  - else
+    = render 'articles', articles: @articles
