@@ -1,0 +1,13 @@
+- unless articles.empty?
+  .container
+    - articles.each do |article|
+      .col-sm-4.col-lg-4.col-md-4
+        .thumbnail
+          //= image_tag article.image, class: 'img-responsive', style: 'width: 200px; height: 300px;'
+          .caption{style: 'height: 130px; overflow: hidden;'}
+            %h4
+              = link_to article.title, article, style: 'text-align: center;'
+            %p
+              = truncate article.text, length: 150
+
+  = paginate articles, theme: 'twitter-bootstrap-3' if pagination

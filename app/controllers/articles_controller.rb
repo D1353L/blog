@@ -12,6 +12,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   def show
     increment_views_count
+    @random_articles = Article.where.not(id: @article.id).order('RANDOM()').limit(3)
   end
 
   # GET /articles/new
