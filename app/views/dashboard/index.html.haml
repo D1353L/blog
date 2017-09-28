@@ -1,23 +1,18 @@
 .container
   %h1 Dashboard
   %p= flash[:error] if flash.present?
+  %p#notice= notice
 
-- unless @articles.empty?
-  .container
-    %table.table
-      %thead
-        %tr
-          %th Title
-          %th Text
-          %th Actions
-      %tbody
-        - @articles.each do |article|
-          %tr
-            %td= link_to article.title, article
-            %td= truncate article.text, length: 150
-            %td
-              = link_to 'Edit', edit_article_path(article)
-              |
-              = link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
-
-    = paginate @articles, theme: 'twitter-bootstrap-3'
+  - if current_user.has_role?(:admin)
+    %ul.nav.nav-tabs{:role => "tablist"}
+      %li.active
+        %a{'data-toggle' => 'tab', href: '#articles', role: 'tab'} Articles
+      %li
+        %a{'data-toggle' => 'tab', href: '#copyriters', role: 'tab'} Copyriters
+    .tab-content
+      #articles.tab-pane.active
+        = render 'articles', articles: @articles
+      #copyriters.tab-pane
+        = render 'copyriters', copyriters: @copyriters
+  - elsif current_user.has_role?(:copyriter)
+    = render 'articles', articles: @articles

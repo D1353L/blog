@@ -1,12 +1,12 @@
 class ArticlesController < ApplicationController
-  include ApplicationHelper
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: %i[show edit update destroy]
   load_and_authorize_resource
 
   # GET /articles
   def index
     set_return_url
     @articles = Article.page(params[:page])
+    flash.now[:error] = 'There are no any articles' if @articles.empty?
   end
 
   # GET /articles/1

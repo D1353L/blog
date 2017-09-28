@@ -1,0 +1,19 @@
+%h2 Copyriters
+
+- unless copyriters.empty?
+  .container
+    %table.table
+      %thead
+        %tr
+          %th Id
+          %th Email
+          %th Actions
+      %tbody
+        - copyriters.each do |copyriter|
+          %tr
+            %td= copyriter.id
+            %td= copyriter.email
+            %td= link_to 'Destroy', copyriter_path(copyriter), method: :delete, data: { confirm: 'Are you sure?' }
+
+    = paginate copyriters, theme: 'twitter-bootstrap-3'
+= link_to "New Copyriter", new_copyriter_path

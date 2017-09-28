@@ -2,13 +2,13 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, Article unless user
+    can :read, Article
 
     if user
-      if user.has_role? :admin
-        can :manage, :all
-      elsif user.has_role? :copyriter
-        can :manage, Article
+      can :manage, :all if user.has_role? :admin
+      if user.has_role? :copyriter
+        can :write, Article, user_id: user.id
+        can :index, :dashboard
       end
     end
   end

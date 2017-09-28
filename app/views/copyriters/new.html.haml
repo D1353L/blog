@@ -1,0 +1,24 @@
+%h1 New Copyriter
+
+= form_for @copyriter, url: {action: :create} do |f|
+  - if @copyriter.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@copyriter.errors.count, "error")
+        prohibited this user from being saved:
+      %ul
+        - @copyriter.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :email
+    %br/
+    = f.email_field :email
+  .field
+    = f.label :password
+    %br/
+    = f.password_field :password
+  .actions
+    = f.submit 'Create'
+
+= link_to 'Back', return_url
