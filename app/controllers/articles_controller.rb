@@ -1,8 +1,11 @@
 class ArticlesController < ApplicationController
+  include ApplicationHelper
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  load_and_authorize_resource
 
   # GET /articles
   def index
+    set_return_url
     @articles = Article.page(params[:page])
   end
 
@@ -42,7 +45,7 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   def destroy
     @article.destroy
-    redirect_to articles_url, notice: 'Article was successfully destroyed.'
+    redirect_to return_url, notice: 'Article was successfully destroyed.'
   end
 
   private

@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   root 'articles#index'
 
   resources :articles
+  get 'dashboard', to: 'dashboard#index', as: :dashboard
 end
