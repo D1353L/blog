@@ -6,9 +6,10 @@
   - if @article.image.present?
     = image_tag @article.image.url, class: 'img-responsive'
     %br
-  %p= @article.text
+  %p= simple_format(sanitize(@article.text))
   %br
   %p= "Viewed #{@article.views_count} times"
-
+%hr
 %h2 Random posts
 = render 'articles_cards', articles: @random_articles
+%hr
