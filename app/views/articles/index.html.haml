@@ -2,4 +2,4 @@
   %h1 Articles
   %p= flash[:error] if flash.present?
   %p#notice= notice
-= render 'articles_cards', articles: @articles, pagination: true
+= render 'articles_cards', articles: @articles

@@ -1,4 +1,6 @@
 class CopyritersController < ApplicationController
+  authorize_resource class: false
+
   # GET /copyriters/new
   def new
     @copyriter = User.new

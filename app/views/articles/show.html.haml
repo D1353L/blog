@@ -1,12 +1,14 @@
 %p#notice= notice
 
 .jumbotron
+  = link_to 'Back', return_url
   %h1= @article.title
+  - if @article.image.present?
+    = image_tag @article.image.url, class: 'img-responsive'
+    %br
   %p= @article.text
   %br
   %p= "Viewed #{@article.views_count} times"
 
 %h2 Random posts
-= render 'articles_cards', articles: @random_articles, pagination: false
-
-= link_to 'Back', return_url
+= render 'articles_cards', articles: @random_articles

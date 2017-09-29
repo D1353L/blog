@@ -1,5 +1,6 @@
 %h2 Copyriters
 
+= link_to "New Copyriter", new_copyriter_path
 - unless copyriters.empty?
   .container
     %table.table
@@ -16,4 +17,3 @@
             %td= link_to 'Destroy', copyriter_path(copyriter), method: :delete, data: { confirm: 'Are you sure?' }
 
     = paginate copyriters, theme: 'twitter-bootstrap-3'
-= link_to "New Copyriter", new_copyriter_path

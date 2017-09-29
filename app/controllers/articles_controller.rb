@@ -12,7 +12,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   def show
     increment_views_count
-    @random_articles = Article.where.not(id: @article.id).order('RANDOM()').limit(3)
+    @random_articles = Article.where.not(id: @article.id).sample(3)
   end
 
   # GET /articles/new
@@ -66,6 +66,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def article_params
-      params.require(:article).permit(:title, :text).merge({user: current_user})
+      params.require(:article).permit(:title, :text, :image).merge({user: current_user})
     end
 end

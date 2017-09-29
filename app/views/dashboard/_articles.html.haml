@@ -1,5 +1,6 @@
 %h2 Articles
 
+= link_to "New Article", new_article_path
 - unless articles.empty?
   .container
     %table.table
@@ -24,4 +25,3 @@
                 = link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' }
 
     = paginate articles, theme: 'twitter-bootstrap-3'
-= link_to "New Article", new_article_path
