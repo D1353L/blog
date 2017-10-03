@@ -3,7 +3,7 @@
   %p= flash[:error] if flash.present?
   %p#notice= notice
 
-  - if @copyriters.present?
+  - if can? :manage, User
     %ul.nav.nav-tabs{:role => "tablist"}
       %li.active
         %a{'data-toggle' => 'tab', href: '#articles', role: 'tab'} Articles
