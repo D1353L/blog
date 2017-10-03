@@ -1,6 +1,8 @@
 class Article < ApplicationRecord
   has_attached_file :image, styles: { medium: '400x600', thumb: '200x300' }
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
+  validates_attachment :image, content_type: { content_type: /\Aimage\/.*\z/ },
+                               size: { in: 0..5.megabytes }
+  validates_presence_of :title, :text
   belongs_to :user
   paginates_per 12
   resourcify
