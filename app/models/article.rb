@@ -1,5 +1,8 @@
 class Article < ApplicationRecord
-  has_attached_file :image, styles: { medium: '400x600', thumb: '200x300' }
+  has_attached_file :image, styles: { medium: '400x600', thumb: '200x300' },
+                            path: ':rails_root/public/system/:attachment/:id/'\
+                                  ':style/:filename',
+                            url: '/system/:attachment/:id/:style/:filename'
   validates_attachment :image, content_type: { content_type: /\Aimage\/.*\z/ },
                                size: { in: 0..5.megabytes }
   validates_presence_of :title, :text
