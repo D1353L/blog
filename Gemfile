@@ -27,6 +27,7 @@ group :development, :test do
   gem 'rails-controller-testing'
   gem 'rspec-rails'
   gem 'shoulda'
+  gem 'ffaker'
 end
 
 group :development do
